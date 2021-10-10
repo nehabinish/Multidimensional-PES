@@ -1,0 +1,46 @@
+#!/bin/bash
+# Run a program for N2/W(100): type "job program-name"
+
+# Computer dependent settings:
+
+# Localisation of PES's repository:
+PESS=~/Package/CRP-N2W100
+
+# Localization of TOUT5D.DAT and TOUT45.DAT
+TOUT=~/Package/CRP-N2W100/TOUT
+
+#------------------------------------------------------------------------
+# Localization of atomic data files
+DATATOM=$PESS/DATATOM
+# Localization of molecular data files
+DATAMOL=$PESS/DATAMOL
+
+cp $DATATOM/hole.dat .
+cp $DATATOM/bridge.dat .
+cp $DATATOM/topp.dat .
+cp $DATATOM/topm.dat .
+cp $DATATOM/brihol.dat .
+cp $DATATOM/tophol.dat .
+cp $DATATOM/topbri.dat .
+cp $DATATOM/intrep.dat .
+cp $DATAMOL/potasym.dat .
+cp $DATAMOL/zsw.dat .
+cp $DATAMOL/vibasym.dat .
+cp $TOUT/TOUT45.DAT .
+cp $TOUT/TOUT5D.DAT .
+
+$1
+
+rm hole.dat
+rm bridge.dat
+rm topp.dat
+rm topm.dat
+rm brihol.dat
+rm tophol.dat
+rm topbri.dat
+rm intrep.dat
+rm potasym.dat
+rm zsw.dat
+rm vibasym.dat
+rm TOUT45.DAT 
+rm TOUT5D.DAT 

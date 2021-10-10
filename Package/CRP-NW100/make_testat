@@ -1,0 +1,25 @@
+
+# Computer dependent settings:
+
+# Localisation of PES's repository:
+PESS=~/Desktop/Package/CRP-NW100
+PESS1=~/Desktop/Package
+
+#------------------------------------------------------------------------
+# Localization of library routines.
+# PES specific routines:
+BIBLI=$PESS1/LIBRARY
+# Standard utility routines:
+ORION=$PESS1/SUBORION
+
+# Localisation of atom/surface routines.
+ATOM=$PESS/ROUTINES
+
+ATOMIC="$ATOM/lectatom.f $ATOM/at3D2.f $ATOM/mur3D2.f"
+
+PGM="$BIBLI/dplcoft.f $BIBLI/splint.f $BIBLI/origen100.f"
+
+STD="$ORION/dsplin.f $ORION/tridia.f"
+
+gfortran $ATOM/testat.f -O3 $ATOMIC $PGM $STD -otestat.exe
+

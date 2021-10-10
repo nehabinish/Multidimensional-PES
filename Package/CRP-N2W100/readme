@@ -1,0 +1,16 @@
+The script "prepare" must be run before any use of the program to generate the
+data files TOUT5D.DAT and TOUT45.DAT. Both files must be then placed in the repertory /TOUT.
+This procedure uses the programs "fintmol45", "prep5D" and "prepmol45". The 
+program "prep5D" requires a data file "prep5D.dat" defining the Z interval over
+which the data for the 5D interpolation must be defined as well as the number of
+Z pivots.
+
+The program "testmol45" allows to calculate the potential for a given value of 
+the coordinates. It is compiled by using the script "make_testmol45" and started
+by typing "job testmol45".
+
+At the beginning of each script, a section defines the location of the files.
+Change the relevant argument according to the directory structure on your
+computer.
+
+Please check that the gfortran compiler is correctly set up on your computer or use another compiler.

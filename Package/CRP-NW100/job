@@ -1,0 +1,29 @@
+
+# Computer dependent settings:
+
+# Localisation of PES's repository:
+PESS=~/Desktop/Package/CRP-NW100
+
+#------------------------------------------------------------------------
+# Localization of data files
+DATA=$PESS/DATA
+
+cp $DATA/hole.dat .
+cp $DATA/bridge.dat .
+cp $DATA/topp.dat .
+cp $DATA/topm.dat .
+cp $DATA/brihol.dat .
+cp $DATA/tophol.dat .
+cp $DATA/topbri.dat .
+cp $DATA/intrep.dat .
+
+$1
+
+rm hole.dat
+rm bridge.dat
+rm topp.dat
+rm topm.dat
+rm brihol.dat
+rm tophol.dat
+rm topbri.dat
+rm intrep.dat

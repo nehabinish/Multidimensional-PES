@@ -1,0 +1,146 @@
+#!/bin/bash
+# This program prepares the data files TOUT5D.dat and TOUT45.DAT 
+# required to calculate the 6D potential.
+
+# Computer dependent settings:
+
+# Localisation of PES's repository:
+MAIN=~/Package
+PESS=~/Package/CRP-N2W100
+#------------------------------------------------------------------------
+# Localization of library routines.
+# PES specific routines:
+BIBLI=$MAIN/LIBRARY
+# Standard utility routines:
+ORION=$MAIN/SUBORION
+
+# Localisation of atom/surface routines.
+ATOM=$PESS/ATOMROUT
+
+# Localization of atomic data files
+DATATOM=$PESS/DATATOM
+#Localization of files for 5D interpolation
+DATA5D=$PESS/DATA5D
+# Localization of molecular data files
+DATAMOL=$PESS/DATAMOL
+
+
+
+STD="$ORION/dsplin.f $ORION/tridia.f $ORION/dpl.f"
+gfortran $PESS/ROUTINES/prep5D.f $STD -oprep5D
+
+cp $DATA5D/b-pl.dat .
+cp $DATA5D/b-pp.dat .
+cp $DATA5D/b-p.dat .
+cp $DATA5D/h-pd.dat .
+cp $DATA5D/h-pl.dat .
+cp $DATA5D/h-p.dat .
+cp $DATA5D/t-pd.dat .
+cp $DATA5D/t-pl.dat .
+cp $DATA5D/t-p.dat .
+cp $DATA5D/prep5D.dat .
+
+./prep5D
+
+rm b-pl.dat
+rm b-pp.dat
+rm b-p.dat
+rm h-pd.dat
+rm h-pl.dat
+rm h-p.dat
+rm t-pd.dat
+rm t-pl.dat
+rm t-p.dat
+rm prep5D.dat
+
+rm prep5D
+
+PGM="$BIBLI/dplcoft.f $BIBLI/splint.f $BIBLI/origen100.f"
+ATOMIC="$ATOM/lectatom.f $ATOM/at3D2.f $ATOM/mur3D2.f"
+gfortran $PESS/ROUTINES/fintmol45.f $ATOMIC $STD $PGM -ofintmol45
+
+cp $DATATOM/hole.dat .
+cp $DATATOM/bridge.dat .
+cp $DATATOM/topp.dat .
+cp $DATATOM/topm.dat .
+cp $DATATOM/brihol.dat .
+cp $DATATOM/tophol.dat .
+cp $DATATOM/topbri.dat .
+cp $DATATOM/intrep.dat .
+
+cp $DATAMOL/b-pl.dat .
+cp $DATAMOL/b-pp.dat .
+cp $DATAMOL/b-v.dat .
+cp $DATAMOL/h-pd.dat .
+cp $DATAMOL/h-pl.dat .
+cp $DATAMOL/h-v.dat .
+cp $DATAMOL/t-pd.dat .
+cp $DATAMOL/t-pl.dat .
+
+cp $DATAMOL/b-pl45.dat .
+cp $DATAMOL/b-pp45.dat .
+cp $DATAMOL/b-pd.dat .
+cp $DATAMOL/b-pd45.dat .
+cp $DATAMOL/h-pd45.dat .
+cp $DATAMOL/h-pl45.dat .
+cp $DATAMOL/t-pd45.dat .
+cp $DATAMOL/t-pl45.dat .
+
+./fintmol45
+
+rm fintmol45
+
+rm hole.dat
+rm bridge.dat
+rm topp.dat
+rm topm.dat
+rm brihol.dat
+rm tophol.dat
+rm topbri.dat
+rm intrep.dat
+
+rm b-pl.dat
+rm b-pp.dat
+rm b-v.dat
+rm h-pd.dat
+rm h-pl.dat
+rm h-v.dat
+rm t-pd.dat
+rm t-pl.dat
+
+rm b-pl45.dat
+rm b-pp45.dat
+rm b-pd.dat
+rm b-pd45.dat
+rm h-pd45.dat
+rm h-pl45.dat
+rm t-pd45.dat
+rm t-pl45.dat
+
+STD="$ORION/dsplin.f $ORION/tridia.f $ORION/splin2d.f"
+gfortran $PESS/ROUTINES/prepmol45.f $STD -oprepmol45
+
+cp $DATAMOL/ftop-v.dat .
+
+./prepmol45
+
+rm prepmol45
+
+rm ftop-v.dat
+rm fbri-pl.dat
+rm fbri-pp.dat
+rm fbri-v.dat
+rm fhol-pd.dat
+rm fhol-pl.dat
+rm fhol-v.dat
+rm ftop-pd.dat
+rm ftop-pl.dat
+
+rm fbri-pl45.dat
+rm fbri-pp45.dat
+rm fbri-pd.dat
+rm fbri-pd45.dat
+rm fhol-pd45.dat
+rm fhol-pl45.dat
+rm ftop-pd45.dat
+rm ftop-pl45.dat

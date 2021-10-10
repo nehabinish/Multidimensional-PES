@@ -1,0 +1,28 @@
+#!/bin/bash
+# Computer dependent settings:
+
+# Localisation of PES's repository:
+PESS=~/Package/CRP-N2W100
+PESS1=~/Package
+
+#------------------------------------------------------------------------
+# Localization of library routines.
+# PES specific routines:
+BIBLI=$PESS1/LIBRARY
+# Standard utility routines:
+ORION=$PESS1/SUBORION
+
+# Localisation of atom/surface routines.
+ATOM=$PESS/ATOMROUT
+# Localisation of molecule/surface routines.
+MOLEC=$PESS/ROUTINES
+
+ATOMIC="$ATOM/lectatom.f $ATOM/at3D2.f $ATOM/mur3D2.f"
+
+MOLECULAR="$MOLEC/lectmol45.f $MOLEC/lectmol5D.f $MOLEC/intmol45.f $MOLEC/intmol5D.f"
+
+PGM="$BIBLI/dplcoft.f $BIBLI/splint.f $BIBLI/origen100.f $BIBLI/splinii.f $BIBLI/splcofii.f $BIBLI/ubicar.f"
+
+STD="$ORION/dsplin.f $ORION/tridia.f $ORION/splin2d.f $ORION/dpl.f $ORION/dplp.f"
+
+gfortran $MOLEC/testmol45.f  -O3 $MOLECULAR $ATOMIC $PGM $STD -otestmol45

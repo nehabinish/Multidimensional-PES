@@ -1,0 +1,10 @@
+The program "testat" allows to calculate the potential for a given value of 
+the coordinates. It is compiled by using the script "make_testat" and started
+by the command "job testat" which uses the script "job".
+
+
+At the beginning of each script, a section defines the location of the files.
+Change the relevant argument according to the directory structure on your
+computer.
+
+Please check that the gfortran compiler is correctly set up on your computer or use another compiler.
